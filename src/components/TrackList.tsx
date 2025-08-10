@@ -1,6 +1,6 @@
 export default function TrackList({ tracks }: { tracks: any[] }) {
   const handlePlay = async (uri: string) => {
-    await fetch("https://cactro-backend-spotify.onrender.com/play", {
+    await fetch("https://cactro-backend-spotify.onrender.com/spotify/play", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ uri }),
@@ -8,7 +8,7 @@ export default function TrackList({ tracks }: { tracks: any[] }) {
   };
 
   const handlePause = async () => {
-    await fetch("https://cactro-backend-spotify.onrender.com/pause", {
+    await fetch("https://cactro-backend-spotify.onrender.com/spotify/pause", {
       method: "PUT",
     });
   };
