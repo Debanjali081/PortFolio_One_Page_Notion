@@ -7,11 +7,17 @@ function TrackList({ tracks }) {
     });
   };
 
-  const pauseTrack = () => {
-    fetch("https://cactro-backend-spotify.onrender.com/spotify/pause", {
-      method: "PUT"
-    });
-  };
+  const pauseTrack = async () => {
+  const res = await fetch("https://cactro-backend-spotify.onrender.com/spotify/pause", {
+    method: "PUT"
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    alert(errorData.error || "Failed to pause song");
+  }
+};
+
 
   return (
     <div>
