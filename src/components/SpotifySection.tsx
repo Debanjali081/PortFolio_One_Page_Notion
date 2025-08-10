@@ -22,15 +22,20 @@ export default function SpotifySection() {
 
       <h3 className="text-lg font-semibold mt-6 mb-2">Now Playing</h3>
       {spotifyData.currently_playing ? (
-        <p>{spotifyData.currently_playing.name} — {spotifyData.currently_playing.artist}</p>
+        <p>
+          {spotifyData.currently_playing.name} —{" "}
+          {spotifyData.currently_playing.artist}
+        </p>
       ) : (
         <p>Nothing playing right now.</p>
       )}
 
       <h3 className="text-lg font-semibold mt-6 mb-2">Followed Artists</h3>
       <ul>
-        {spotifyData.followed_artists.map((artist: any, idx: number) => (
-          <li key={idx}>{artist.name}</li>
+        {spotifyData.top_tracks?.map((track, index) => (
+          <li key={index}>
+            {track.name} — {track.artist}
+          </li>
         ))}
       </ul>
     </section>
