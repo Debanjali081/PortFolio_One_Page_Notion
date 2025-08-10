@@ -1,4 +1,4 @@
-import { Download, Share, Copy, MoreHorizontal, Mail, Phone } from 'lucide-react'
+import { Download, Share, Copy, Mail, Phone, Music } from 'lucide-react'
 import { Button } from './ui/button'
 
 export function Header() {
@@ -14,7 +14,6 @@ export function Header() {
         console.log('Sharing failed', error);
       }
     } else {
-      // Fallback for browsers that don't support Web Share API
       navigator.clipboard.writeText(window.location.href);
       alert('Link copied to clipboard!');
     }
@@ -26,10 +25,9 @@ export function Header() {
   };
 
   const handleDownload = () => {
-    // In a real implementation, this would point to an actual PDF file
-    // For now, we'll simulate the download with a data URL
     const link = document.createElement('a');
-    link.href = 'data:application/pdf;base64,JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwogIC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAvTWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0KPj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCj4+CmVuZG9iagoKeHJlZgowIDQKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3OCAwMDAwMCBuIAp0cmFpbGVyCjw8CiAgL1NpemUgNAogIC9Sb290IDEgMCBSCj4+CnN0YXJ0eHJlZgowMDAwMDAwMjY5IDAwMDAwIG4gCg==';
+    link.href =
+      'data:application/pdf;base64,JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwogIC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAvTWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0KPj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCj4+CmVuZG9iagoKeHJlZgowIDQKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3OCAwMDAwMCBuIAp0cmFpbGVyCjw8CiAgL1NpemUgNAogIC9Sb290IDEgMCBSCj4+CnN0YXJ0eHJlZgowMDAwMDAwMjY5IDAwMDAwIG4gCg==';
     link.download = 'Debanjali_Lenka_Resume.pdf';
     link.click();
   };
@@ -42,23 +40,36 @@ export function Header() {
         </div>
         <span className="text-sm text-gray-700 font-medium">Debanjali Lenka</span>
       </div>
-      
+
       <div className="flex items-center gap-2">
-        <Button variant="ghost" size="sm" className="flex items-center gap-1 cursor-pointer" onClick={() => window.location.href = 'mailto:debanjali017@gmail.com'}>
+        <Button variant="ghost" size="sm" onClick={() => window.location.href = 'mailto:debanjali017@gmail.com'}>
           <Mail className="w-4 h-4" />
           <span className="text-sm hidden sm:inline">Contact</span>
         </Button>
-        <Button  variant="ghost" size="sm" className="flex items-center gap-1 cursor-pointer" onClick={() => window.location.href = 'tel:+919827780783'}>
+        <Button variant="ghost" size="sm" onClick={() => window.location.href = 'tel:+919827780783'}>
           <Phone className="w-4 h-4" />
           <span className="text-sm hidden sm:inline">Call</span>
         </Button>
-        <Button className='cursor-pointer' variant="ghost" size="sm" onClick={handleShare}>
+        <Button variant="ghost" size="sm" onClick={handleShare}>
           <Share className="w-4 h-4" />
         </Button>
-        <Button className='cursor-pointer' variant="ghost" size="sm" onClick={handleCopy}>
+        <Button variant="ghost" size="sm" onClick={handleCopy}>
           <Copy className="w-4 h-4" />
         </Button>
-        <Button className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 flex items-center gap-2 cursor-pointer" onClick={handleDownload}>
+
+        {/* Spotify Login Button */}
+        <Button
+          className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 flex items-center gap-2 cursor-pointer"
+          onClick={() => window.open('https://cactro-backend-spotify.onrender.com/login', '_blank')}
+        >
+          <Music className="w-4 h-4" />
+          Connect Spotify
+        </Button>
+
+        <Button
+          className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 flex items-center gap-2 cursor-pointer"
+          onClick={handleDownload}
+        >
           <Download className="w-4 h-4" />
           Download PDF
         </Button>
