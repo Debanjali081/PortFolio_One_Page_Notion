@@ -1,17 +1,18 @@
 function TrackList({ tracks }) {
-  const playTrack = (uri: string) => {
-    fetch("https://cactro-backend-spotify.onrender.com/spotify/play", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ uri })
-    });
-  };
+const playTrack = (uri: string) => {
+  fetch("https://cactro-backend-spotify.onrender.com/spotify/play", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ uri })
+  });
+};
 
-  const pauseTrack = () => {
-    fetch("https://cactro-backend-spotify.onrender.com/spotify/pause", {
-      method: "POST"
-    });
-  };
+const pauseTrack = () => {
+  fetch("https://cactro-backend-spotify.onrender.com/spotify/pause", {
+    method: "PUT"
+  });
+};
+
 
   return (
     <ul>
